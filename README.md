@@ -173,9 +173,4 @@
 
 # 🙏 特别鸣谢
 ## 🛠 开源代码引用
-- [SAKURA-YUMI](https://github.com/SAKURA-YUMI)
-- [EzSync](https://github.com/EzSync)
-- [ACL4SSR](https://github.com/ACL4SSR/ACL4SSR/tree/master/Clash/config)
-- [3Kmfi6HP](https://github.com/6Kmfi6HP/EDtunnel/blob/main/.github/workflows/obfuscator.yml)
-
-
+- [优选订阅生成器](https://github.com/cmliu/WorkerVless2sub)
