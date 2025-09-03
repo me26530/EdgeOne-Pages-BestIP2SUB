@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "wrangler pages dev .",
     "start": "wrangler pages dev .",
-    "build": "node build-index.js",
     "preview": "wrangler pages dev . --port 8788",
     "deploy": "npm run build && wrangler pages publish ."
   },

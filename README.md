@@ -18,8 +18,6 @@
 - **项目名称**：EdgeOne-Pages-BestIP2SUB
 - **构建设置**：
   - 预设框架：`Other`
-  - 根目录：`./`
-  - 编译命令：`node build-index.js`
 
 ### 4. 环境变量配置
 
