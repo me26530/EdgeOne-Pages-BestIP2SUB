@@ -638,7 +638,7 @@ export async function onRequest(context) {
 			协议类型 = 'Trojan';
 		}
 
-		if (!url.pathname.includes("/sub")) {
+		if (!url.pathname.includes("/sub") || !host || !uuid) {
 			const envKey = env.URL302 ? 'URL302' : (env.URL ? 'URL' : null);
 			if (envKey) {
 				const URLs = await 整理(env[envKey]);
@@ -653,29 +653,6 @@ export async function onRequest(context) {
 				return envKey === 'URL302' ? Response.redirect(URL, 302) : fetch(new Request(URL, request));
 			}
 			return await subHtml(request);
-		}
-
-		if (!host || !uuid) {
-			const responseText = `
-			缺少必填参数：host 和 uuid
-			Missing required parameters: host and uuid
-			پارامترهای ضروری وارد نشده: هاست و یوآی‌دی
-			
-			${url.origin}/sub?host=[your host]&uuid=[your uuid]&path=[your path]
-			
-			
-			
-			
-			
-			
-				
-				https://github.com/cmliu/EdgeOne-Pages-BestIP2SUB
-				`;
-
-			return new Response(responseText, {
-				status: 202,
-				headers: { 'content-type': 'text/plain; charset=utf-8' },
-			});
 		}
 
 		if (!path || path.trim() === '') {
