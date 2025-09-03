@@ -5,6 +5,9 @@ node_modules/
 .env.production
 .env.development
 ADAPTATION_REPORT.md
+test/
+DEV_GUIDE.md
+package-lock.json
 
 # 日志文件
 *.log

@@ -1,0 +1,14 @@
+name = "edgeone-pages-bestip2sub"
+compatibility_date = "2024-09-25"
+
+# 环境变量示例 - 用于本地开发测试
+# 实际使用时请在 .env 文件中配置
+[vars]
+# HOST = "your-host.com"
+# UUID = "your-uuid-here" 
+# TOKEN = "your-token"
+# PATH = "/?ed=2560"
+
+# 本地开发配置
+[env.development]
+compatibility_date = "2024-09-25"

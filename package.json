@@ -1,0 +1,26 @@
+{
+  "name": "edgeone-pages-bestip2sub",
+  "version": "1.0.0",
+  "description": "优选订阅生成器 - EdgeOne Pages版本",
+  "main": "functions/[[path]].js",
+  "scripts": {
+    "dev": "wrangler pages dev .",
+    "start": "wrangler pages dev .",
+    "build": "echo 'No build step required'",
+    "preview": "wrangler pages dev . --port 8788",
+    "test": "node test/local-test.js"
+  },
+  "keywords": [
+    "edgeone",
+    "pages",
+    "proxy",
+    "subscription"
+  ],
+  "author": "cmliu",
+  "license": "MIT",
+  "devDependencies": {
+    "wrangler": "^3.78.0",
+    "miniflare": "^3.20240925.0"
+  },
+  "dependencies": {}
+}
