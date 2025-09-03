@@ -1,111 +1,200 @@
-# EdgeOne Pages 部署指南
+# 🚀 优选订阅生成器 EdgeOne-Pages-BestIP2SUB
+![sub](./sub.png)
+这个是一个通过 EdgeOne Workers 搭建，自动化批量替换生成优选线路 VMess / VLESS / Trojan 节点的 **优选订阅生成器** [[实现原理]](https://www.youtube.com/watch?v=p-KhFJAC4WQ&t=70s)
 
-## 部署步骤
+> [!WARNING]
+> 注意！这是一个**公益服务项目**，请不要将私人节点放入`LINK`变量，这会让所有人都能获得此节点！！！
 
-### 1. 准备工作
-- 确保你有 EdgeOne 控制台的访问权限
-- 准备好你的 Git 仓库或项目文件
+> Telegram交流群：[@CMLiussss](https://t.me/CMLiussss)
+## 🔧 部署方法
+### 🛠 EdgeOne Pages Github 部署 
+<details>
+<summary><code><strong>「 Pages Github 部署方法 」</strong></code></summary>
 
-### 2. 创建 EdgeOne Pages 项目
-1. 登录 EdgeOne 控制台
-2. 进入 Pages 服务
-3. 点击"创建项目"
-4. 选择部署方式：
-   - 从 Git 仓库部署（推荐）
-   - 直接上传文件
+1. 部署 EdgeOne Pages：
+   - 在 Github 上先 Fork 本项目，并点上 Star !!!
+   - 在 EdgeOne Pages 控制台中选择 `连接到 Git`后，选中 `EdgeOne-Pages-BestIP2SUB`项目后点击 `开始设置`。
+     
+2. 给 Pages绑定 自定义域：
+   - 在 Pages控制台的 `自定义域`选项卡，下方点击 `设置自定义域`。
+   - 填入你的自定义次级域名，注意不要使用你的根域名，例如：
+     您分配到的域名是 `fuck.cloudns.biz`，则添加自定义域填入 `sub.fuck.cloudns.biz`即可；
+   - 按照 EdgeOne 的要求将返回你的域名DNS服务商，添加 该自定义域 `sub`的 CNAME记录 `EdgeOne-Pages-BestIP2SUB.pages.dev` 后，点击 `激活域`即可。
 
-### 3. 配置项目设置
-- **项目名称**：EdgeOne-Pages-BestIP2SUB
-- **构建设置**：
-  - 预设框架：`Other`
+3. 修改 快速订阅入口 以及 添加内置节点信息：
 
-### 4. 环境变量配置
+   例如您的pages项目域名为：`sub.fuck.cloudns.biz`；
+   - 添加 `TOKEN` 变量，快速订阅访问入口，默认值为: `auto` ，获取订阅器默认节点订阅地址即 `/auto` ，例如 `https://sub.fuck.cloudns.biz/auto`；
 
-#### 基础配置
-- `TOKEN`：访问令牌，多个用英文逗号分隔
-- `HOST`：主机域名
-- `UUID`：用户ID（VLESS/VMess协议）
-- `PASSWORD`：密码（Trojan协议）
-- `PATH`：请求路径，默认 `/?ed=2560`
+**添加 VLESS 内置节点信息**
+   - 添加 `HOST` 变量，例如 `edgetunnel-2z2.pages.dev`；
+   - 添加 `UUID` 变量，例如 `30e9c5c8-ed28-4cd9-b008-dc67277f8b02`；
+   - 添加 `PATH` 变量，例如 `/?ed=2560`；
 
-#### 高级配置
-- `SUBAPI`：订阅转换API，默认 `SUBAPI.cmliussss.net`
-- `SUBCONFIG`：订阅转换配置文件URL
-- `SUBNAME`：订阅名称，默认 `优选订阅生成器`
-- `SNI`：SNI设置
-- `ALPN`：ALPN设置
+**添加 Trojan 内置节点信息**
+   - 添加 `HOST` 变量，例如 `hbpb.us.kg`；
+   - 添加 `PASSWORD` 变量，例如 `bpb-trojan`；
+   - 添加 `PATH` 变量，例如 `/tr?ed=2560`；
 
-#### 通知配置
-- `TGTOKEN`：Telegram机器人令牌
-- `TGID`：Telegram聊天ID
+4. 添加你的专属优选线路：
 
-#### 节点配置
-- `ADD`：TLS节点地址，多个用英文逗号分隔
-- `ADDAPI`：TLS节点API接口，多个用英文逗号分隔
-- `ADDNOTLS`：非TLS节点地址
-- `ADDNOTLSAPI`：非TLS节点API接口
-- `ADDCSV`：CSV测速结果接口
+   - 添加变量 `ADD`/`ADDNOTLS` 本地静态的优选线路，若不带端口号 TLS默认端口为443 / noTLS默认端口为80，#号后为备注别名，例如：
+   ```
+   icook.tw:2053#优选域名
+   Cloudflare.cfgo.cc#优选官方线路
+   ```
 
-#### 代理IP配置
-- `PROXYIP`：代理IP地址，多个用英文逗号分隔
-- `PROXYIPAPI`：代理IP接口
+   - 添加变量 `ADDAPI`/`ADDNOTLSAPI` 为 **优选IP地址txt文件** 的 URL。例如：
+   ```url
+   https://raw.githubusercontent.com/cmliu/WorkerVless2sub/main/addressesapi.txt
+   https://raw.githubusercontent.com/cmliu/WorkerVless2sub/main/addressesipv6api.txt
+   ```
 
-#### 其他配置
-- `DLS`：测速下限，默认 `7`
-- `NOTLS`：是否禁用TLS，默认 `false`
-- `PS`：节点名称后缀
-- `ICO`：网站图标URL
-- `PNG`：网站头像URL
-- `IMG`：网站背景图片URL，多个用英文逗号分隔
-- `BEIAN`：网站备案信息
+   - 添加变量 `ADDCSV` 为 **iptest测速结果csv文件地址** 的 URL。例如：
+   ```js
+   https://raw.githubusercontent.com/cmliu/WorkerVless2sub/main/addressescsv.csv
+   ```
+   - 添加变量 `DLS` ，意为`ADDCSV`满足最低速度的要求，不满足改数值以上的IP将不会添加至优选订阅内容。注意：不考虑单位，只看数值，请按照您的测速结果而定。例如：
+   ```js
+   8
+   ```
 
-### 5. 部署完成
-1. 点击"部署"按钮
-2. 等待部署完成
-3. 访问分配的域名测试功能
+ </details>
 
-### 6. 自定义域名（可选）
-1. 在 EdgeOne Pages 控制台中添加自定义域名
-2. 配置 DNS 记录
-3. 等待 SSL 证书生成
+---
 
-## 使用说明
+## 💡 如何使用 [视频教程](https://youtu.be/OjqCKeEY7DQ)
 
-### 订阅链接格式
-```
-https://your-domain.com/sub?host=HOST&uuid=UUID&path=PATH
-```
+  例如您的workers项目域名为：`sub.cmliussss.workers.dev`；
+  
+### 1. 快速订阅
 
-### 支持的客户端
-- Clash
-- Sing-box
-- Surge
-- V2Ray
-- Shadowrocket
-- QuantumultX
+   - 添加 `TOKEN` 变量，快速订阅访问入口，默认值为: `auto` ，获取订阅器默认节点订阅地址即 `/auto` ，例如：
+     ```url
+     https://sub.cmliussss.workers.dev/auto
+     ```
+     
+### 2. 自定义订阅 
 
-### API 端点
-- `/` - 主页界面
-- `/sub` - 订阅生成接口
-- `/test` - 测试接口
+**一键优选订阅**
 
-## 故障排查
+  例如您的workers项目域名为：`sub.cmliussss.workers.dev`；
+  - 打开项目域名，填入已接入CDN的节点链接后点击`生成优选订阅`即可。
 
-### 常见问题
-1. **部署失败**：检查代码语法和环境变量配置
-2. **订阅无效**：检查HOST和UUID配置
-3. **节点无法连接**：检查防火墙和网络设置
+**VLESS 手动订阅**
+   - **自定义订阅格式** `https://[你的Workers域名]/sub?host=[你的Vless域名]&uuid=[你的UUID]&path=[你的ws路径]`
+   - **host**：您的 VLESS 伪装域名，例如 `edgetunnel-2z2.pages.dev`；
+   - **uuid**：您的 VLESS 客户端 UUID，例如 `30e9c5c8-ed28-4cd9-b008-dc67277f8b02`；
+   - **path**（可选）：您的 VLESS 路径（没有可留空不填），例如 `/?ed=2560`。
+   - **sni**（可选）：您的 VLESS 的SNI（留空则默认同`host`），例如 `www.10068.cn`。
+   - **type**（可选）：您的 VLESS 的传输协议（留空则默认为`ws`），例如 `splithttp`。
+   - 自定义订阅地址如下：
+     ```url
+     https://sub.cmliussss.workers.dev/sub?host=edgetunnel-2z2.pages.dev&uuid=30e9c5c8-ed28-4cd9-b008-dc67277f8b02&path=/?ed=2560&sni=www.10068.cn&type=splithttp
+     ```
+   - 注意路径必须包含 "/sub"。
 
-### 调试方法
-1. 访问 `/test` 接口检查基础功能
-2. 检查浏览器控制台错误信息
-3. 查看 EdgeOne Pages 部署日志
+**Trojan 手动订阅**
+   - **自定义订阅格式** `https://[你的Workers域名]/sub?host=[你的Trojan域名]&pw=[你的password]&path=[你的ws路径]`
+   - **host**：您的 Trojan 伪装域名，例如 `hbpb.us.kg`；
+   - **uuid**：您的 Trojan 客户端 Password，例如 `bpb-trojan`；
+   - **path**（可选）：您的 Trojan 路径（没有可留空不填），例如 `/tr?ed=2560`。
+   - **sni**（可选）：您的 Trojan 的SNI（留空则默认同`host`），例如 `www.10068.cn`。
+   - **type**（可选）：您的 Trojan 的传输协议（留空则默认为`ws`），例如 `splithttp`。
+   - 自定义订阅地址如下：
+     ```url
+     https://sub.cmliussss.workers.dev/sub?host=hbpb.us.kg&pw=bpb-trojan&path=/tr?ed=2560
+     ```
+   - 注意路径必须包含 "/sub"。
 
-## 安全建议
-1. 定期更新 UUID 和密码
-2. 使用 HTTPS 访问
-3. 不要在公共场所暴露订阅链接
-4. 建议使用自定义域名
+### 3. 指定 clash、singbox 配置文件
 
-## 支持
-如遇问题，请查看项目 README 或提交 Issue。
+   - 添加 `format=clash` 键值，获取 clash 订阅配置，例如：
+     ```url
+     https://sub.cmliussss.workers.dev/auto?format=clash
+     https://sub.cmliussss.workers.dev/sub?format=clash&host=edgetunnel-2z2.pages.dev&uuid=30e9c5c8-ed28-4cd9-b008-dc67277f8b02&path=/?ed=2048
+     ```
+     
+   - 添加 `format=singbox` 键值，获取 singbox 订阅配置，例如：
+     ```url
+     https://sub.cmliussss.workers.dev/auto?format=singbox
+     https://sub.cmliussss.workers.dev/sub?format=singbox&host=edgetunnel-2z2.pages.dev&uuid=30e9c5c8-ed28-4cd9-b008-dc67277f8b02&path=/?ed=2048
+     ```
+
+----
+
+## 🔑 变量说明
+| 变量名 | 示例 | 备注 | 
+|--------|---------|-----|
+| TOKEN | `auto` | 快速订阅内置节点的订阅路径地址 /auto （支持多元素, 元素之间使用`,`作间隔）| 
+| HOST | `edgetunnel-2z2.pages.dev` | 快速订阅内置节点的伪装域名 （支持多元素, 订阅时随机获取, 元素之间使用`,`作间隔） | 
+| UUID | `b7a392e2-4ef0-4496-90bc-1c37bb234904` | 快速订阅内置VLESS节点的UUID （与变量`PASSWORD`冲突, 共存时优先使用`PASSWORD`） | 
+| KEY | `token` | 动态UUID秘钥，使用变量`KEY`的时候，将不再启用变量`UUID`|
+| TIME | `7` | 动态UUID有效时间（单位:天）|
+| UPTIME | `3` | 动态UUID更新时间（默认:北京时间`3`点更新） |
+| PASSWORD | `bpb-trojan` | 快速订阅内置Trojan节点的password （与变量`UUID`冲突, 共存时优先使用`PASSWORD`） | 
+| PATH | `/?ed=2560` | 快速订阅内置节点的路径信息 | 
+| SNI | `www.10068.cn` | 快速订阅内置节点的SNI信息（留空则默认同`host`） | 
+| TYPE | `splithttp` | 快速订阅内置节点的传输协议信息（留空则默认为`ws`） | 
+| ALPN | `h3` | Alpn（留空则默认为`http/1.1`） | 
+| ADD | `icook.tw:2053#官方优选域名` | 对应`addresses`字段 （支持多元素, 元素之间使用`,`作间隔） | 
+| ADDAPI | [https://raw.github.../addressesapi.txt](https://raw.githubusercontent.com/cmliu/WorkerVless2sub/main/addressesapi.txt) | 对应`addressesapi`字段 （支持多元素, 元素之间使用`,`作间隔） | 
+| ADDNOTLS | `icook.hk:8080#官方优选域名` | 对应`addressesnotls`字段 （支持多元素, 元素之间使用`,`作间隔） | 
+| ADDNOTLSAPI | [https://raw.github.../addressesapi.txt](https://raw.githubusercontent.com/cmliu/CFcdnVmess2sub/main/addressesapi.txt) | 对应`addressesnotlsapi`字段 （支持多元素, 元素之间使用`,`作间隔） | 
+| ADDCSV | [https://raw.github.../addressescsv.csv](https://raw.githubusercontent.com/cmliu/WorkerVless2sub/main/addressescsv.csv) | 对应`addressescsv`字段 （支持多元素, 元素之间使用`,`作间隔） | 
+| DLS | `8` |`addressescsv`测速结果满足速度下限 | 
+| NOTLS | `false` | 改为`true`, 将不做域名判断 始终返回noTLS节点 | 
+| TGTOKEN | `6894123456:XXXXXXXXXX0qExVsBPUhHDAbXXXXXqWXgBA` | 发送TG通知的机器人token | 
+| TGID | `6946912345` | 接收TG通知的账户数字ID | 
+| SUBAPI | `subapi.cmliussss.net` | clash、singbox等 订阅转换后端 | 
+| SUBCONFIG | [https://raw.github.../ACL4SSR_Online_Full_MultiMode.ini](https://raw.githubusercontent.com/cmliu/ACL4SSR/main/Clash/config/ACL4SSR_Online_Full_MultiMode.ini) | clash、singbox等 订阅转换配置文件 | 
+| SUBNAME | `优选订阅生成器` | 订阅生成器名称 | 
+| ICO | `https://raw.cmliussss.com/favicon.ico` | 网站图标 |
+| PNG | `https://raw.cmliussss.com/img/CM512.png` | 网站LOGO | 
+| IMG | `https://raw.cmliussss.com/keqing1080p.jpg` | 背景图片，多张图片将随机展示 （多元素`换行`作间隔） | 
+| BEIAN | `提供维护: <a href='https://t.me/CMLiussss'>CMLiussss</a>` | 主页维护信息 | 
+| SOCKS5DATA | [https://raw.github.../socks5Data](https://raw.githubusercontent.com/cmliu/WorkerVless2sub/main/socks5Data) | Socks5代理池 | 
+| PS | `【请勿测速】` | 节点名备注消息 | 
+| PROXYIP | `proxyip.cmliussss.net` | 默认分配的ProxyIP, 多ProxyIP将随机分配（支持多元素, 元素之间使用`,`作间隔） | 
+| PROXYIPAPI | `https://raw.cmliussss.com/Serv00_ProxyIP.txt` | 不支持多元素 | 
+| CMPROXYIPS | `proxyip.aliyun.cmliussss.net#HK` | 识别HK后分配对应的ProxyIP（支持多元素, 元素之间使用`,`作间隔） | 
+| CFPORTS | `2053`,`2096`,`8443` | CF账户标准端口列表 |
+| URL302 | `https://t.me/CMLiussss` | 主页302跳转(支持多url, url之间使用`,`作间隔, 小白别用) |
+| URL | `https://blog.cmliussss.com` | 主页反代伪装(支持多url, url之间使用`,`作间隔, 乱设容易触发反诈) |
+| LINK | `vless://b7a39...`,`vmess://ew0K...`,`https://sub...` | 补充的**公益节点链接**（不要填入私用节点）, 可同时放入多个节点链接与多个订阅链接（支持多元素, 元素之间使用`,`作间隔） |
+
+> [!WARNING]
+> EdgeOne Pages 变量多元素不支持`换行`作为间隔符，请使用`,`逗号作为间隔符！！！
+
+----
+
+## ⭐ Star 星星走起
+[![Stargazers over time](https://starchart.cc/cmliu/EdgeOne-Pages-BestIP2SUB.svg?variant=adaptive)](https://starchart.cc/cmliu/EdgeOne-Pages-BestIP2SUB)
+
+# 🙏 特别鸣谢
+### 🚀 Sponsored by SharonNetworks
+
+<a href="https://sharon.io/">
+  <img src="https://framerusercontent.com/assets/3bMljdaUFNDFvMzdG9S0NjYmhSY.png" width="30%" alt="sharon.io">
+</a>
+
+本项目的[订阅转换](https://sub.cmliussss.com/)后端由 SharonNetworks 提供支持 —— 专注亚太顶级回国优化线路，高带宽、低延迟直连中国大陆，内置强大高防 DDoS 清洗能力。
+
+SharonNetworks 为您的业务起飞保驾护航！
+
+#### ✨ 服务优势
+
+* 亚太三网回程优化直连中国大陆，下载快到飞起
+* 超大带宽 + 抗攻击清洗服务，保障业务安全稳定
+* 多节点覆盖（香港、新加坡、日本、台湾、韩国）
+* 高防护力、高速网络；港/日/新 CDN 即将上线
+
+想体验同款构建环境？欢迎 [访问 Sharon 官网](https://sharon.io) 或 [加入 Telegram 群组](https://t.me/SharonNetwork) 了解更多并申请赞助。
+
+## 🛠 开源代码引用
+- [SAKURA-YUMI](https://github.com/SAKURA-YUMI)
+- [EzSync](https://github.com/EzSync)
+- [ACL4SSR](https://github.com/ACL4SSR/ACL4SSR/tree/master/Clash/config)
+- [3Kmfi6HP](https://github.com/6Kmfi6HP/EDtunnel/blob/main/.github/workflows/obfuscator.yml)
+
+
