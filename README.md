@@ -172,25 +172,6 @@
 [![Stargazers over time](https://starchart.cc/cmliu/EdgeOne-Pages-BestIP2SUB.svg?variant=adaptive)](https://starchart.cc/cmliu/EdgeOne-Pages-BestIP2SUB)
 
 # 🙏 特别鸣谢
-### 🚀 Sponsored by SharonNetworks
-
-<a href="https://sharon.io/">
-  <img src="https://framerusercontent.com/assets/3bMljdaUFNDFvMzdG9S0NjYmhSY.png" width="30%" alt="sharon.io">
-</a>
-
-本项目的[订阅转换](https://sub.cmliussss.com/)后端由 SharonNetworks 提供支持 —— 专注亚太顶级回国优化线路，高带宽、低延迟直连中国大陆，内置强大高防 DDoS 清洗能力。
-
-SharonNetworks 为您的业务起飞保驾护航！
-
-#### ✨ 服务优势
-
-* 亚太三网回程优化直连中国大陆，下载快到飞起
-* 超大带宽 + 抗攻击清洗服务，保障业务安全稳定
-* 多节点覆盖（香港、新加坡、日本、台湾、韩国）
-* 高防护力、高速网络；港/日/新 CDN 即将上线
-
-想体验同款构建环境？欢迎 [访问 Sharon 官网](https://sharon.io) 或 [加入 Telegram 群组](https://t.me/SharonNetwork) 了解更多并申请赞助。
-
 ## 🛠 开源代码引用
 - [SAKURA-YUMI](https://github.com/SAKURA-YUMI)
 - [EzSync](https://github.com/EzSync)
