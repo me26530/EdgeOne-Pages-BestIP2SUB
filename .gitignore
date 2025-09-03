@@ -8,6 +8,8 @@ ADAPTATION_REPORT.md
 test/
 DEV_GUIDE.md
 package-lock.json
+DEPLOY_GUIDE.md
+index.html
 
 # 日志文件
 *.log

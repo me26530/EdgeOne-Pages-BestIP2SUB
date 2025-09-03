@@ -6,9 +6,9 @@
   "scripts": {
     "dev": "wrangler pages dev .",
     "start": "wrangler pages dev .",
-    "build": "echo 'No build step required'",
+    "build": "node build-index.js",
     "preview": "wrangler pages dev . --port 8788",
-    "test": "node test/local-test.js"
+    "deploy": "npm run build && wrangler pages publish .",
   },
   "keywords": [
     "edgeone",
