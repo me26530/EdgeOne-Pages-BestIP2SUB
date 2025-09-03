@@ -1,0 +1,17 @@
+{
+  "name": "EdgeOne-Pages-BestIP2SUB",
+  "version": "1.0.0",
+  "description": "优选订阅生成器 - EdgeOne Pages版本",
+  "functions": {
+    "directory": "functions"
+  },
+  "routes": [
+    {
+      "src": "/.*",
+      "dest": "/functions/[[path]].js"
+    }
+  ],
+  "env": {
+    "NODE_VERSION": "18"
+  }
+}

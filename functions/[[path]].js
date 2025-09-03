@@ -464,12 +464,14 @@ function utf8ToBase64(str) {
 	return btoa(unescape(encodeURIComponent(str)));
 }
 
-export default {
-	async fetch(request, env) {
-		if (env.TOKEN) 快速订阅访问入口 = await 整理(env.TOKEN);
-		BotToken = env.TGTOKEN || BotToken;
-		ChatID = env.TGID || ChatID;
-		subConverter = env.SUBAPI || subConverter;
+// EdgeOne Pages 入口函数
+export async function onRequest(context) {
+	const { request, env } = context;
+	
+	if (env.TOKEN) 快速订阅访问入口 = await 整理(env.TOKEN);
+	BotToken = env.TGTOKEN || BotToken;
+	ChatID = env.TGID || ChatID;
+	subConverter = env.SUBAPI || subConverter;
 		if (subConverter.includes("http://")) {
 			subConverter = subConverter.split("//")[1];
 			subProtocol = 'http';
@@ -602,7 +604,17 @@ export default {
 				EndPS += ` 订阅器内置节点 ${空字段} 未设置！！！`;
 			}
 
-			await sendMessage(`#获取订阅 ${FileName}`, request.headers.get('CF-Connecting-IP'), `UA: ${userAgentHeader}</tg-spoiler>\n域名: ${url.hostname}\n<tg-spoiler>入口: ${url.pathname + url.search}</tg-spoiler>`);
+			// 获取客户端真实IP - EdgeOne Pages适配
+			const getClientIP = (request) => {
+				// EdgeOne Pages 可能使用的IP头
+				return request.headers.get('X-Real-IP') || 
+				       request.headers.get('X-Forwarded-For')?.split(',')[0]?.trim() ||
+				       request.headers.get('CF-Connecting-IP') || // 保留CF兼容
+				       request.headers.get('True-Client-IP') ||
+				       '未知IP';
+			};
+			
+			await sendMessage(`#获取订阅 ${FileName}`, getClientIP(request), `UA: ${userAgentHeader}</tg-spoiler>\n域名: ${url.hostname}\n<tg-spoiler>入口: ${url.pathname + url.search}</tg-spoiler>`);
 		} else {
 			host = url.searchParams.get('host');
 			uuid = url.searchParams.get('uuid') || url.searchParams.get('password') || url.searchParams.get('pw');
@@ -1004,8 +1016,7 @@ export default {
 				headers: { 'content-type': 'text/plain; charset=utf-8' },
 			});
 		}
-	}
-};
+}
 
 async function subHtml(request) {
 	const url = new URL(request.url);
