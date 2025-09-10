@@ -974,7 +974,7 @@ export async function onRequest(context) {
 	}
 
 	try {
-		const subConverterResponse = await fetch(subConverterUrl, { headers: { 'User-Agent': userAgentHeader } });
+		const subConverterResponse = await fetch(subConverterUrl, { headers: { 'User-Agent': `v2rayN/${FileName} (https://github.com/cmliu/EdgeOne-Pages-BestIP2SUB)` } });
 
 		if (!subConverterResponse.ok) {
 			throw new Error(`Error fetching subConverterUrl: ${subConverterResponse.status} ${subConverterResponse.statusText}`);
