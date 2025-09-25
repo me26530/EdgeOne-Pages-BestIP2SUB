@@ -133,7 +133,7 @@
 | TIME | `7` | 动态UUID有效时间（单位:天）|
 | UPTIME | `3` | 动态UUID更新时间（默认:北京时间`3`点更新） |
 | PASSWORD | `bpb-trojan` | 快速订阅内置Trojan节点的password （与变量`UUID`冲突, 共存时优先使用`PASSWORD`） | 
-| PATH | `/?ed=2560` | 快速订阅内置节点的路径信息 | 
+| VPATH | `/?ed=2560` | 快速订阅内置节点的路径信息 | 
 | SNI | `www.10068.cn` | 快速订阅内置节点的SNI信息（留空则默认同`host`） | 
 | TYPE | `splithttp` | 快速订阅内置节点的传输协议信息（留空则默认为`ws`） | 
 | ALPN | `h3` | Alpn（留空则默认为`http/1.1`） | 

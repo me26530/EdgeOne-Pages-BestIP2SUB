@@ -590,7 +590,7 @@ export async function onRequest(context) {
 			}
 		}
 
-		path = env.PATH || "/?ed=2560";
+		path = env.VPATH || "/?ed=2560";
 		sni = env.SNI || host;
 		type = env.TYPE || type;
 		隧道版本作者 = env.ED || 隧道版本作者;
